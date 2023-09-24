@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>working watch</title>
+    <link rel="stylesheet" href="stop watch.css">
+</head>
+
+<body>
+    <div class="container-div">
+        <div class="hourcounter-div js-hourcounter-div">0</div>
+        <div class="mincounter-div js-mincounter-div">0</div>
+        <div class="seccounter-div js-seccounter-div">0</div>
+        <button class="start" onclick="
+         timer()
+        
+        " >start</button>
+        <button class="reset" onclick="
+        hour = 0,
+        min = 0,
+        sec = 0
+        render()
+       
+        ">reset</button>
+    </div>
+
+
+</body>
+
+<script>
+
+const object =  JSON.parse(localStorage.getItem('time')) 
+
+   
+       
+      let {hour ,min , sec} = object;
+
+     let count = false;
+      let id;
+
+
+      function timer() {
+
+
+     
+    if (!count) {
+       id = setInterval (() => {
+      sec++;    
+
+      if (sec === 60) {
+        sec = 0
+      }
+      const counterDiv = document.querySelector
+      ('.js-seccounter-div');       
+      counterDiv.innerHTML = `${sec}`; 
+      
+      }, 1000)
+
+      id2 = setInterval(() => {
+        min++;    
+
+      const counterDiv = document.querySelector
+      ('.js-mincounter-div');       
+      counterDiv.innerHTML = `${min}`; 
+         
+     }, 60000)
+
+
+    id3 = setInterval(() => {
+        hour++;    
+        const counterDiv = document.querySelector
+        ('.js-hourcounter-div');       
+        counterDiv.innerHTML = `${hour}`; 
+          
+        }, 600000);
+
+       
+   localStorage.setItem('time', JSON.stringify(object) )
+
+        count = true;
+        
+      }else {
+        clearInterval(id)
+        clearInterval(id2)
+        clearInterval(id3)
+        count = false;
+        
+      }
+
+    let button = document.querySelector('.start')      
+     
+    if (button.innerHTML === 'start') {
+        button.innerHTML = 'stop'
+        
+    } else {
+        button.innerHTML = 'start'
+    }
+      }
+   
+   function render() {
+    const seccounterDiv = document.querySelector
+      ('.js-seccounter-div');       
+      seccounterDiv.innerHTML = `${sec}`; 
+
+      const mincounterDiv = document.querySelector
+      ('.js-mincounter-div');       
+      mincounterDiv.innerHTML = `${min}`; 
+      const hourcounterDiv = document.querySelector
+        ('.js-hourcounter-div');       
+        hourcounterDiv.innerHTML = `${hour}`; 
+          
+    
+   }
+  
+</script>
+</html>

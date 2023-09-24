@@ -1,0 +1,11 @@
+.container{
+    display: grid;
+    gap: 1px;
+    grid-template-columns: repeat(3, 2rem);
+    margin-left: 17rem;
+}
+.xoro{
+    height: 2rem;
+    background-color: grey;
+    
+}

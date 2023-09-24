@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>param watch</title>
+    <link rel="stylesheet" href="stop watch.css">
+</head>
+
+<body>
+    <div class="container-div">
+        <div class="seccounter-div js-seccounter-div">0</div>
+        <button class="start" onclick="
+       
+       timer(sec, '.js-seccounter-div')
+        " >start</button>
+        <button class="reset"></button>
+    </div>
+
+
+</body>
+
+<script>
+
+const object = {
+      hour: 0,
+      min: 0,
+      sec: 0 }
+
+      let {hour ,min , sec} = object;
+
+    
+      let count = false;
+            let id;
+           
+
+    function timer(type, jj) {
+
+            if (!count) {
+            id = setInterval (() => {
+            type++;    
+
+            if (type === 60) {
+            type = 0
+            }
+            const counterDiv = document.querySelector
+            (jj);       
+            counterDiv.innerHTML = `${type}`; 
+
+            }, 1000)
+            count = true;
+            
+            }else {
+            clearInterval(id)
+            count = false;}
+            console.log(id)
+        }
+    
+       
+  
+  
+</script>
+</html>
